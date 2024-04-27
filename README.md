@@ -65,6 +65,19 @@ optional arguments:
   --suffix SUFFIX       Suffix for the output file
 ```
 
+## Troubleshooting
+1. RuntimeError: Sizes of tensors must match except in dimension 1. Expected size 64 but got size 63 for tensor number 1 in the list.
+    This error is caused by the duration padding. The oringinal pad_duration calculation is not accurate. Just round up the duration to the nearest multiple of 5.12 in the utils.py file and everything will be fine.
+    ```python
+      # PATH_TO_ENV/.conda/envs/audiosr/bin/python/site-packages/audiosr/utils.py
+
+      # line 195
+      if(duration % 5.12 != 0):
+          pad_duration = int((duration // 5.12) + 1) * 5.12
+      else:
+          pad_duration = duration
+    ```
+
 
 ## TODO
 [!["Buy Me A Coffee"](https://www.buymeacoffee.com/assets/img/custom_images/orange_img.png)](https://www.buymeacoffee.com/haoheliuP)
