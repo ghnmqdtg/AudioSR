@@ -1,4 +1,5 @@
 *.pyc
+*.out
 __pycache__
 test.py
 flagged
@@ -10,3 +11,5 @@ build*
 dist/
 *DS_Store*
 data/
+outputs/
+gt_wavs/
